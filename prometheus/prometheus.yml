@@ -1,0 +1,49 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+rule_files:
+  - "/etc/prometheus/rules/scap_alerts.yml"
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          - alertmanager:9093
+
+scrape_configs:
+  # Prometheus itself
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # SCAP Exporter
+  - job_name: 'scap-compliance'
+    static_configs:
+      - targets: ['scap-exporter:9154']
+    scrape_interval: 30s
+    scrape_timeout: 25s
+    metrics_path: /metrics
+
+  # Node Exporter for system metrics
+  - job_name: 'node'
+    static_configs:
+      - targets: ['node-exporter:9100']
+
+  # Working SCAP metrics server (with real data)
+  - job_name: 'scap-working'
+    static_configs:
+      - targets: ['host.docker.internal:9155']
+    scrape_interval: 30s
+    scrape_timeout: 25s
+
+  # Additional SCAP exporters (if you have multiple systems)
+  - job_name: 'scap-remote-systems'
+    static_configs:
+      - targets: 
+        # Add your remote SCAP exporters here
+        # - 'server-01:9154'
+        # - 'server-02:9154'
+    scrape_interval: 60s
+    scrape_timeout: 55s
+

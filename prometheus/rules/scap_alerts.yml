@@ -1,0 +1,52 @@
+groups:
+  - name: scap_compliance_alerts
+    rules:
+      - alert: SCAPComplianceLow
+        expr: scap_compliance_score_percent < 80
+        for: 5m
+        labels:
+          severity: warning
+          service: scap
+        annotations:
+          summary: "Low SCAP compliance score on {{ $labels.hostname }}"
+          description: "SCAP compliance score is {{ $value }}% for profile {{ $labels.profile }} on {{ $labels.hostname }}"
+
+      - alert: SCAPComplianceCritical
+        expr: scap_compliance_score_percent < 50
+        for: 2m
+        labels:
+          severity: critical
+          service: scap
+        annotations:
+          summary: "Critical SCAP compliance score on {{ $labels.hostname }}"
+          description: "SCAP compliance score is critically low at {{ $value }}% for profile {{ $labels.profile }} on {{ $labels.hostname }}"
+
+      - alert: SCAPHighSeverityFailures
+        expr: scap_failed_rules_by_severity{severity="high"} > 5
+        for: 5m
+        labels:
+          severity: warning
+          service: scap
+        annotations:
+          summary: "High severity SCAP failures on {{ $labels.hostname }}"
+          description: "{{ $value }} high severity SCAP rules failed for profile {{ $labels.profile }} on {{ $labels.hostname }}"
+
+      - alert: SCAPExporterDown
+        expr: up{job="scap-compliance"} == 0
+        for: 2m
+        labels:
+          severity: critical
+          service: scap
+        annotations:
+          summary: "SCAP Exporter is down"
+          description: "SCAP Exporter has been down for more than 2 minutes on {{ $labels.instance }}"
+
+      - alert: SCAPScanStale
+        expr: (time() - scap_last_scan_timestamp_seconds) > 7200
+        for: 5m
+        labels:
+          severity: warning
+          service: scap
+        annotations:
+          summary: "SCAP scan is stale on {{ $labels.hostname }}"
+          description: "Last SCAP scan was {{ $value | humanizeDuration }} ago for profile {{ $labels.profile }} on {{ $labels.hostname }}"

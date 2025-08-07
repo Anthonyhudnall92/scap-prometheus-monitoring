@@ -1,0 +1,33 @@
+# SCAP Prometheus Exporter Configuration
+
+# HTTP server settings
+http_port: 9154
+hostname: "server-01"  # Override hostname if needed
+
+# Scanner configuration
+scanner:
+  oscap_binary: "oscap"  # Path to oscap binary
+  content_dir: "/usr/share/xml/scap/ssg/content"  # SCAP content directory
+
+# Scan configurations
+scans:
+  # CIS Benchmark scan
+  - profile: "xccdf_org.ssgproject.content_profile_cis"
+    content_file: "/usr/share/xml/scap/ssg/content/ssg-debian11-ds.xml"
+    interval: 3600  # Scan every hour (3600 seconds)
+  
+  # STIG profile scan (if available)
+  - profile: "xccdf_org.ssgproject.content_profile_stig"
+    content_file: "/usr/share/xml/scap/ssg/content/ssg-debian11-ds.xml"
+    interval: 7200  # Scan every 2 hours
+  
+  # Standard profile scan
+  - profile: "xccdf_org.ssgproject.content_profile_standard"
+    content_file: "/usr/share/xml/scap/ssg/content/ssg-debian11-ds.xml"
+    interval: 14400  # Scan every 4 hours
+
+# Logging configuration
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(levelname)s - %(message)s"
+

@@ -1,0 +1,46 @@
+# HELP python_gc_objects_collected_total Objects collected during gc
+# TYPE python_gc_objects_collected_total counter
+python_gc_objects_collected_total{generation="0"} 287.0
+python_gc_objects_collected_total{generation="1"} 110.0
+python_gc_objects_collected_total{generation="2"} 0.0
+# HELP python_gc_objects_uncollectable_total Uncollectable objects found during GC
+# TYPE python_gc_objects_uncollectable_total counter
+python_gc_objects_uncollectable_total{generation="0"} 0.0
+python_gc_objects_uncollectable_total{generation="1"} 0.0
+python_gc_objects_uncollectable_total{generation="2"} 0.0
+# HELP python_gc_collections_total Number of times this generation was collected
+# TYPE python_gc_collections_total counter
+python_gc_collections_total{generation="0"} 16.0
+python_gc_collections_total{generation="1"} 1.0
+python_gc_collections_total{generation="2"} 0.0
+# HELP python_info Python platform information
+# TYPE python_info gauge
+python_info{implementation="CPython",major="3",minor="13",patchlevel="5",version="3.13.5"} 1.0
+# HELP scap_compliance_score_percent SCAP compliance score percentage
+# TYPE scap_compliance_score_percent gauge
+scap_compliance_score_percent{benchmark="xccdf_org.ssgproject.content_benchmark_PRODUCTION",hostname="prod-server-01.company.com",profile="xccdf_org.ssgproject.content_profile_production"} 0.0
+# HELP scap_total_rules Total number of SCAP rules evaluated
+# TYPE scap_total_rules gauge
+scap_total_rules{benchmark="xccdf_org.ssgproject.content_benchmark_PRODUCTION",hostname="prod-server-01.company.com",profile="xccdf_org.ssgproject.content_profile_production"} 7.0
+# HELP scap_rules_by_status Number of SCAP rules by status
+# TYPE scap_rules_by_status gauge
+scap_rules_by_status{benchmark="xccdf_org.ssgproject.content_benchmark_PRODUCTION",hostname="prod-server-01.company.com",profile="xccdf_org.ssgproject.content_profile_production",status="passed"} 0.0
+scap_rules_by_status{benchmark="xccdf_org.ssgproject.content_benchmark_PRODUCTION",hostname="prod-server-01.company.com",profile="xccdf_org.ssgproject.content_profile_production",status="failed"} 0.0
+scap_rules_by_status{benchmark="xccdf_org.ssgproject.content_benchmark_PRODUCTION",hostname="prod-server-01.company.com",profile="xccdf_org.ssgproject.content_profile_production",status="error"} 0.0
+scap_rules_by_status{benchmark="xccdf_org.ssgproject.content_benchmark_PRODUCTION",hostname="prod-server-01.company.com",profile="xccdf_org.ssgproject.content_profile_production",status="unknown"} 0.0
+scap_rules_by_status{benchmark="xccdf_org.ssgproject.content_benchmark_PRODUCTION",hostname="prod-server-01.company.com",profile="xccdf_org.ssgproject.content_profile_production",status="notapplicable"} 1.0
+scap_rules_by_status{benchmark="xccdf_org.ssgproject.content_benchmark_PRODUCTION",hostname="prod-server-01.company.com",profile="xccdf_org.ssgproject.content_profile_production",status="notchecked"} 0.0
+scap_rules_by_status{benchmark="xccdf_org.ssgproject.content_benchmark_PRODUCTION",hostname="prod-server-01.company.com",profile="xccdf_org.ssgproject.content_profile_production",status="informational"} 0.0
+# HELP scap_failed_rules_by_severity Number of failed SCAP rules by severity
+# TYPE scap_failed_rules_by_severity gauge
+scap_failed_rules_by_severity{benchmark="xccdf_org.ssgproject.content_benchmark_PRODUCTION",hostname="prod-server-01.company.com",profile="xccdf_org.ssgproject.content_profile_production",severity="high"} 1.0
+scap_failed_rules_by_severity{benchmark="xccdf_org.ssgproject.content_benchmark_PRODUCTION",hostname="prod-server-01.company.com",profile="xccdf_org.ssgproject.content_profile_production",severity="medium"} 0.0
+scap_failed_rules_by_severity{benchmark="xccdf_org.ssgproject.content_benchmark_PRODUCTION",hostname="prod-server-01.company.com",profile="xccdf_org.ssgproject.content_profile_production",severity="low"} 1.0
+scap_failed_rules_by_severity{benchmark="xccdf_org.ssgproject.content_benchmark_PRODUCTION",hostname="prod-server-01.company.com",profile="xccdf_org.ssgproject.content_profile_production",severity="info"} 0.0
+# HELP scap_last_scan_timestamp_seconds Timestamp of last SCAP scan
+# TYPE scap_last_scan_timestamp_seconds gauge
+scap_last_scan_timestamp_seconds{benchmark="xccdf_org.ssgproject.content_benchmark_PRODUCTION",hostname="prod-server-01.company.com",profile="xccdf_org.ssgproject.content_profile_production"} 1.7230509e+09
+# HELP scap_scan_info Information about SCAP scan
+# TYPE scap_scan_info gauge
+scap_scan_info{benchmark_id="xccdf_org.ssgproject.content_benchmark_PRODUCTION",benchmark_version="1.0",hostname="prod-server-01.company.com",profile="xccdf_org.ssgproject.content_profile_production",scan_time="2024-08-07T13:15:00"} 1.0
+
